@@ -1,22 +1,76 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
-  "scripts": {
-    "start": "electron ."
-  },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
-  "devDependencies": {
-    "electron": "^8.2.5"
-  }
+     "name": "discordhooker",
+     "version": "1.0.0",
+     "description": "DiscordHooker - 디스코드 웹훅",
+     "main": "main.js",
+     "scripts": {
+          "start": "electron .",
+          "build:osx": "electron-builder --mac",
+          "build:linux": "npm run build:linux32 && npm run build:linux64",
+          "build:linux32": "electron-builder --linux --ia32",
+          "build:linux64": "electron-builder --linux --x64",
+          "build:win": "npm run build:win32 && npm run build:win64",
+          "build:win32": "electron-builder --win portable --ia32",
+          "build:win64": "electron-builder --win portable --x64"
+     },
+     "author": "DipokalHHJ",
+     "devDependencies": {
+          "electron": "^8.2.5",
+          "electron-builder": "^22.7.0"
+     },
+     "build": {
+          "productName": "DiscordHooker",
+          "appId": "kr.devent.dh",
+          "asar": true,
+          "protocols": {
+               "name": "DiscordHooker",
+               "schemes": [
+                    "DiscordHooker"
+               ]
+          },
+          "mac": {
+               "target": [
+                    "default"
+               ],
+               "icon": "./asset/favicon.ico"
+          },
+          "dmg": {
+               "title": "tournant",
+               "icon": "./asset/favicon.ico"
+          },
+          "win": {
+               "target": [
+                    "zip",
+                    "nsis"
+               ],
+               "icon": "./asset/favicon.ico"
+          },
+          "linux": {
+               "target": [
+                    "AppImage",
+                    "deb",
+                    "rpm",
+                    "zip",
+                    "tar.gz"
+               ],
+               "icon": "./asset/favicon.ico"
+          },
+          "nsis": {
+               "oneClick": false,
+               "allowToChangeInstallationDirectory": false,
+               "installerLanguages": [
+                    "en_US",
+                    "ko_KR"
+               ],
+               "language": "1042"
+          },
+          "directories": {
+               "buildResources": "resources/installer/",
+               "output": "build/",
+               "app": "."
+          }
+     },
+     "dependencies": {
+          "request": "^2.88.2"
+     }
 }
